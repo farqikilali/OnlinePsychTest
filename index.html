@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONNNNNLINEEEEE Psychological Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .subtest {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .active {
+            display: block;
+        }
+        #timer {
+            font-size: 1.2em;
+            color: #ff0000;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .submit-btn {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Online Psychological Test</h1>
+
+    <!-- Subtest 1 -->
+    <div id="subtest1" class="subtest active">
+        <h2>Subtest 1: Personality Assessment</h2>
+        <div id="timer1">Time Remaining: <span id="time1">6000</span> seconds</div>
+        <form id="form1">
+            <div class="question">
+                <label>1. I enjoy social gatherings.</label><br>
+                <input type="radio" name="q1" value="1" required> Strongly Disagree<br>
+                <input type="radio" name="q1" value="2"> Disagree<br>
+                <input type="radio" name="q1" value="3"> Neutral<br>
+                <input type="radio" name="q1" value="4"> Agree<br>
+                <input type="radio" name="q1" value="5"> Strongly Agree<br>
+				<input type="radio" name="q1" value="5"> Strongly boring<br>
+            </div>
+				<label>2. I enjoy being aloneeeeeeeeeeeeeee ner.</label><br>
+                <input type="radio" name="q1" value="1" required> Strongly Disagree<br>
+                <input type="radio" name="q1" value="2"> Disagree<br>
+                <input type="radio" name="q1" value="3"> Neutral<br>
+                <input type="radio" name="q1" value="4"> Agree<br>
+                <input type="radio" name="q1" value="5"> Strongly Agree<br>
+				<input type="radio" name="q1" value="5"> Strongly boring<br>
+			<div class="question">
+				<label>2. Your question here?</label><br>
+				<input type="radio" name="q2" value="1" required> Option 1<br>
+				<input type="radio" name="q2" value="2"> Option 2<br>
+				<input type="radio" name="q2" value="3"> Option 3<br>
+				<input type="radio" name="q2" value="4"> Option 4<br>
+				<input type="radio" name="q2" value="5"> Option 5<br>
+			</div>
+            <button type="button" class="submit-btn" onclick="submitSubtest(1)">Submit Subtest 1</button>
+        </form>
+    </div>
+
+    <!-- Subtest 2 -->
+    <div id="subtest2" class="subtest">
+        <h2>Subtest 2: Anxiety Level</h2>
+        <div id="timer2">Time Remaining: <span id="time2">900</span> seconds</div>
+        <form id="form2">
+            <div class="question">
+                <label>1. I often feel nervous or on edge.</label><br>
+                <input type="radio" name="q1" value="1" required> Strongly Disagree<br>
+                <input type="radio" name="q1" value="2"> Disagree<br>
+                <input type="radio" name="q1" value="3"> Neutral<br>
+                <input type="radio" name="q1" value="4"> Agree<br>
+                <input type="radio" name="q1" value="5"> Strongly Agree<br>
+            </div>
+            <!-- Add more questions as needed -->
+            <button type="button" class="submit-btn" onclick="submitSubtest(2)">Submit Subtest 2</button>
+        </form>
+    </div>
+
+    <!-- Subtest 3 -->
+    <div id="subtest3" class="subtest">
+        <h2>Subtest 3: Cognitive Abilities</h2>
+        <div id="timer3">Time Remaining: <span id="time3">1200</span> seconds</div>
+        <form id="form3">
+            <div class="question">
+                <label>1. What is the next number in the sequence: 2, 4, 6, 8, ?</label><br>
+                <input type="number" name="q1" required><br>
+            </div>
+            <!-- Add more questions as needed -->
+            <button type="button" class="submit-btn" onclick="submitSubtest(3)">Submit Subtest 3</button>
+        </form>
+    </div>
+
+    <!-- Completion Message -->
+    <div id="completion" class="subtest">
+        <h2>Thank You!</h2>
+        <p>Your responses have been recorded.</p>
+    </div>
+
+    <script>
+        // Timer Function
+        function startTimer(subtestNumber, duration, display) {
+            var timer = duration, minutes, seconds;
+            var interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    alert("Time's up for Subtest " + subtestNumber + "! Moving to the next subtest.");
+                    submitSubtest(subtestNumber);
+                }
+            }, 1000);
+        }
+
+        // Initialize Timers
+        window.onload = function () {
+            // Subtest 1: 600 seconds (10 minutes)
+            var time1 = 00,
+                display1 = document.querySelector('#time1');
+            startTimer(1, time1, display1);
+
+            // Subtest 2: 900 seconds (15 minutes)
+            var time2 = 900,
+                display2 = document.querySelector('#time2');
+            startTimer(2, time2, display2);
+
+            // Subtest 3: 1200 seconds (20 minutes)
+            var time3 = 1200,
+                display3 = document.querySelector('#time3');
+            startTimer(3, time3, display3);
+        };
+
+        // Manage Subtest Navigation
+        function submitSubtest(subtestNumber) {
+			// Collect form data
+			var form = document.getElementById('form' + subtestNumber);
+			var formData = new FormData(form);
+			var responses = {};
+			formData.forEach(function(value, key){
+				responses[key] = value;
+			});
+			console.log('Subtest ' + subtestNumber + ' Responses:', responses);
+
+			// Prepare data to send
+			var data = {
+				"subtest": "Subtest " + subtestNumber,
+				"responses": responses
+			};
+
+			// Send data to Google Apps Script
+			fetch('https://script.google.com/macros/s/AKfycbwanaWTNCCd0QGUZ5D7PF3vlzsh9JrVAQ_7pm8kkRnX3HeP6UhrVi_KcCrY259LL-ZQjg/exec', { // Replace with your Web App URL
+				method: 'POST',
+				mode: 'no-cors',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			})
+			.then(function() {
+				console.log('Data sent successfully');
+			})
+			.catch(function(error) {
+				console.error('Error sending data:', error);
+			});
+
+			// Hide current subtest
+			document.getElementById('subtest' + subtestNumber).style.display = 'none';
+
+			// Show next subtest or completion message
+			if (subtestNumber < 3) {
+				document.getElementById('subtest' + (subtestNumber + 1)).style.display = 'block';
+			} else {
+				document.getElementById('completion').style.display = 'block';
+			}
+        }
+    </script>
+
+</body>
+</html>
